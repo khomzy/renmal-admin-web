@@ -1,70 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Renmal Capital Money OS administration portal.">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="theme-color" content="#1E3A8A">
-
-  <!-- iOS meta tags & icons -->
+  <meta name="theme-color" content="#142633">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Renmal Money OS">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>Renmal Money OS</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="manifest" href="manifest.json">
+  <title>Renmal Money OS</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #f5f7fa;
-      font-family: Arial, sans-serif;
+    html, body { height: 100%; margin: 0; background: #f3f5f5; font-family: system-ui, sans-serif; }
+    #loading { position: fixed; inset: 0; display: grid; place-items: center; background: #f3f5f5; color: #172b3a; }
+    .loading-card { text-align: center; padding: 32px; }
+    .brand-mark { display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 18px; background: #142633; color: #8fd4c5; }
+    #loading strong { display: block; font-size: 23px; letter-spacing: -.5px; font-weight: 650; }
+    #loading p { margin: 10px 0 24px; font-size: 14px; color: #617382; }
+    .progress { width: 160px; height: 3px; margin: auto; overflow: hidden; border-radius: 4px; background: #dce7e5; }
+    .progress::after { content: ''; display: block; width: 45%; height: 100%; background: #176b63; animation: load 1.5s ease-in-out infinite alternate; }
+    @keyframes load { to { transform: translateX(125%); } }
+    @media (prefers-reduced-motion: reduce) { .progress::after { animation: none; width: 100%; } }
+    @media (prefers-color-scheme: dark) {
+      html, body, #loading { background: #101c27; color: #eaf0f4; }
+      #loading p { color: #a9bbc7; }
     }
-    #loading {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      color: #1e3a8a;
-      background: #f5f7fa;
-    }
-    #loading strong { display: block; font-size: 20px; margin-bottom: 8px; }
-    #loading span { color: #64748b; font-size: 13px; }
   </style>
 </head>
 <body>
   <div id="loading" role="status" aria-live="polite">
-    <div><strong>Renmal Money OS</strong><span>Loading secure workspace…</span></div>
+    <div class="loading-card">
+      <div class="brand-mark" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9h18L12 3 3 9ZM5 11v7m5-7v7m4-7v7m5-7v7M3 21h18"/></svg></div>
+      <strong>Renmal Capital</strong>
+      <p>Opening your Money OS workspace…</p>
+      <div class="progress" aria-hidden="true"></div>
+    </div>
   </div>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
-
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
   <script>
     window.addEventListener('flutter-first-frame', function () {
       document.getElementById('loading')?.remove();
